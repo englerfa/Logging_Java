@@ -10,7 +10,7 @@ public aspect Autolog {
 
 	// create pointcut that captures all public and private methods
 	// execution( return_type package_class_method arguments)
-    pointcut publicMethodExecuted(): (execution( * *(..)) );
+    pointcut publicMethodExecuted(): ( call(* *.*(..)) || execution(* *.*(..)) ) && !within(Autolog);
     
     // TODO record argument values before the method gets executed? Can they be changed otherwise?
     
