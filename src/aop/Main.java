@@ -21,10 +21,9 @@ public class Main {
 		Libuse l = new Libuse();
 		l.run();
 		System.out.println();
+		Math.min(5.0, 6.0);
 		
 	}
-	
-
 	
 
 }

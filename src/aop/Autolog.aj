@@ -9,7 +9,8 @@ import org.aspectj.lang.reflect.CodeSignature;
 public aspect Autolog {
 
 	// create pointcut that captures all public and private methods
-    pointcut publicMethodExecuted(): execution( * *(..));
+	// execution( return_type package_class_method arguments)
+    pointcut publicMethodExecuted(): (execution( * *(..)) );
     
     // TODO record argument values before the method gets executed? Can they be changed otherwise?
     
