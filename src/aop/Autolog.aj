@@ -44,18 +44,25 @@ public aspect Autolog {
             }
         }
         
-        
-        System.out.print("[LOGGING ]");
-        System.out.print(now.format(formatter) + " | ");
-        System.out.print("METHOD: " + signature);
-        System.out.print(", ARGUMENTS: ");
-        for(Argument a : args) {
-        	System.out.print(a.name + "=" + a.value + " ");		// TODO Add type, too?
+        switch(OUTPUT_FORMAT) {
+        case 1:
+        	System.out.print("TODO");
+        	break;
+        default:
+            System.out.print("[LOGGING ]");
+            System.out.print(now.format(formatter) + " | ");
+            System.out.print("METHOD: " + signature);
+            System.out.print(", ARGUMENTS: ");
+            for(Argument a : args) {
+            	System.out.print(a.name + "=" + a.value + " ");		// TODO Add type, too?
+            }
+            System.out.print(", RETURNS: " + returnValue);
+            System.out.println();
+        	break;
         }
-        System.out.print(", RETURNS: " + returnValue);
-        System.out.println();
         
     }
+    
     
 	class Argument {
 		String name;
