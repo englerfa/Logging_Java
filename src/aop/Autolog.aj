@@ -7,9 +7,19 @@ import java.time.format.DateTimeFormatter;
 import org.aspectj.lang.reflect.CodeSignature;
 
 public aspect Autolog {
+	
+	
+	/**
+	 * configuration of output.
+	 * 0 human readable like [LOGGING] 2019-09-20 14:12:27 | METHOD: double java.lang.Math.min(double, double), ARGUMENTS: a=5.0 b=6.0 , RETURNS: 5.0
+	 * 1 machine readable e.g., in JSON format
+	 */
+	public static final int OUTPUT_FORMAT = 0;
 
-	// create pointcut that captures all public and private methods
-	// execution( return_type package_class_method arguments)
+	/**
+	 * create pointcut that captures all public and private methods.
+	 * execution( return_type package_class_method arguments).
+	 */
     pointcut publicMethodExecuted(): ( call(* *.*(..)) || execution(* *.*(..)) ) && !within(Autolog);
     
     // TODO record argument values before the method gets executed? Can they be changed otherwise?
@@ -23,7 +33,7 @@ public aspect Autolog {
         String signature = thisJoinPoint.getSignature().toString();
         CodeSignature codeSignature = (CodeSignature) thisJoinPoint.getSignature();
         
-        // argument values and names
+        // collect argument values and names
         Object[] argumentValues = thisJoinPoint.getArgs();
         String[] argumentNames = codeSignature.getParameterNames();
         for (int i =0; i < argumentValues.length; i++){
@@ -35,15 +45,23 @@ public aspect Autolog {
             }
         }
         
-        // Printing
-        System.out.print(now.format(formatter) + " | ");
-        System.out.print("METHOD: " + signature);
-        System.out.print(", ARGUMENTS: ");
-        for(Argument a : args) {
-        	System.out.print(a.name + "=" + a.value + " ");		// TODO Add type, too?
+        
+        switch(OUTPUT_FORMAT) {
+	        case 1:
+	        	System.out.println("LOGGING TODO");
+	        	break;
+	        default:
+	            // Printing
+	            System.out.print("[LOGGING] ");
+	            System.out.print(now.format(formatter) + " | ");
+	            System.out.print("METHOD: " + signature);
+	            System.out.print(", ARGUMENTS: ");
+	            for(Argument a : args) {
+	            	System.out.print(a.name + "=" + a.value + " ");		// TODO Add type, too?
+	            }
+	            System.out.print(", RETURNS: " + returnValue);
+	            System.out.println();
         }
-        System.out.print(", RETURNS: " + returnValue);
-        System.out.println();
         
     }
     
