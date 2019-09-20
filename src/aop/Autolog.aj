@@ -19,12 +19,12 @@ public aspect Autolog {
 	 * create pointcut that captures all public and private methods.
 	 * execution( return_type package_class_method arguments).
 	 */
-    pointcut publicMethodExecuted(): ( call(* *.*(..)) || execution(* *.*(..)) ) && !within(Autolog);
+    pointcut methodCalled(): ( call(* *.*(..)) || execution(* *.*(..)) ) && !within(Autolog);
     
     // TODO record argument values before the method gets executed? Can they be changed otherwise?
     
     // get information from method (name, arguments, return value, ...)
-    after() returning (Object returnValue): publicMethodExecuted() {
+    after() returning (Object returnValue): methodCalled() {
     	List<Argument> args = new ArrayList<Argument>();
     	LocalDateTime now = LocalDateTime.now();
     	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
