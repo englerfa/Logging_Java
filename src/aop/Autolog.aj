@@ -21,15 +21,16 @@ public aspect Autolog {
 	 */
     pointcut methodExecuted(): ( call(* *.*(..)) || execution(* *.*(..)) ) && !within(Autolog);
     
-    // TODO record argument values before the method gets executed? Can they be changed otherwise?
+    // TODO record argument values before the method gets executed? Can they be changed otherwise? Possible approach with around.
     
-
+    before(): methodExecuted(){
+    	
+    }
     
     // get information from method (name, arguments, return value, ...)
     after() returning (Object returnValue): methodExecuted() {
     	List<Argument> args = new ArrayList<Argument>();
 
-    	
         String signature = thisJoinPoint.getSignature().toString();
         CodeSignature codeSignature = (CodeSignature) thisJoinPoint.getSignature();
         
@@ -63,9 +64,7 @@ public aspect Autolog {
             System.out.println();
         	break;
         }
-        
     }
-    
     
 	class Argument {
 		String name;
