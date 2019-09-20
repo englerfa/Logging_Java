@@ -23,11 +23,12 @@ public aspect Autolog {
     
     // TODO record argument values before the method gets executed? Can they be changed otherwise?
     
+
+    
     // get information from method (name, arguments, return value, ...)
     after() returning (Object returnValue): methodExecuted() {
     	List<Argument> args = new ArrayList<Argument>();
-    	LocalDateTime now = LocalDateTime.now();
-    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
     	
         String signature = thisJoinPoint.getSignature().toString();
         CodeSignature codeSignature = (CodeSignature) thisJoinPoint.getSignature();
@@ -49,6 +50,8 @@ public aspect Autolog {
         	System.out.println("TODO");
         	break;
         default:
+        	LocalDateTime now = LocalDateTime.now();
+        	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             System.out.print("[LOGGING ]");
             System.out.print(now.format(formatter) + " | ");
             System.out.print("METHOD: " + signature);
