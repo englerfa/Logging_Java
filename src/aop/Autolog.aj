@@ -16,9 +16,8 @@ public aspect Autolog {
 	public static final int OUTPUT_FORMAT = 0;
 	
 	/**
-	 * configuration of output.
-	 * 0 human readable like [LOGGING] 2019-09-20 14:12:27 | METHOD: double java.lang.Math.min(double, double), ARGUMENTS: a=5.0 b=6.0 , RETURNS: 5.0
-	 * 1 machine readable e.g., in JSON format
+	 * create pointcut that captures all public and private methods.
+	 * execution( return_type package_class_method arguments).
 	 */
     pointcut publicMethodExecuted(): ( call(* *.*(..)) || execution(* *.*(..)) ) && !within(Autolog);
     
