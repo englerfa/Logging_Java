@@ -14,15 +14,6 @@ public aspect Autolog {
 	 * 0 human readable like [LOGGING] 2019-09-20 14:12:27 | METHOD: double java.lang.Math.min(double, double), ARGUMENTS: a=5.0 b=6.0 , RETURNS: 5.0
 	 * 1 machine readable e.g., in JSON format
 	 */
-<<<<<<< HEAD
-	public static final int OUTPUT_FORMAT = 0;
-
-	/**
-	 * create pointcut that captures all public and private methods.
-	 * execution( return_type package_class_method arguments).
-	 */
-=======
->>>>>>> branch 'master' of https://github.com/englerfa/Logging_Java.git
     pointcut publicMethodExecuted(): ( call(* *.*(..)) || execution(* *.*(..)) ) && !within(Autolog);
     
     // TODO record argument values before the method gets executed? Can they be changed otherwise?
