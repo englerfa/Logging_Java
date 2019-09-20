@@ -45,6 +45,7 @@ public aspect Autolog {
         }
         
         
+        System.out.print("[LOGGING ]");
         System.out.print(now.format(formatter) + " | ");
         System.out.print("METHOD: " + signature);
         System.out.print(", ARGUMENTS: ");
