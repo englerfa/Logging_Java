@@ -8,6 +8,12 @@ import org.aspectj.lang.reflect.CodeSignature;
 
 public aspect Autolog {
 	
+	/**
+	 * configuration of output.
+	 * 0 human readable like [LOGGING] 2019-09-20 14:12:27 | METHOD: double java.lang.Math.min(double, double), ARGUMENTS: a=5.0 b=6.0 , RETURNS: 5.0
+	 * 1 machine readable e.g., in JSON format
+	 */
+	public static final int OUTPUT_FORMAT = 0;
 	
 	/**
 	 * configuration of output.
