@@ -46,7 +46,7 @@ public aspect Autolog {
         
         switch(OUTPUT_FORMAT) {
         case 1:
-        	System.out.print("TODO");
+        	System.out.println("TODO");
         	break;
         default:
             System.out.print("[LOGGING ]");
