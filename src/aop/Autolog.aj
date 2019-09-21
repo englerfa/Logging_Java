@@ -53,7 +53,7 @@ public aspect Autolog {
         default:
         	LocalDateTime now = LocalDateTime.now();
         	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-            System.out.print("[LOGGING ]");
+            System.out.print("[LOGGING] ");
             System.out.print(now.format(formatter) + " | ");
             System.out.print("METHOD: " + signature);
             System.out.print(", ARGUMENTS: ");
