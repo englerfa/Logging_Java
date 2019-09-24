@@ -66,6 +66,11 @@ public aspect Autolog {
         }
     }
     
+    
+    class Logging{
+    	//TODO
+    }
+    
 	class Argument {
 		String name;
 		String value;
