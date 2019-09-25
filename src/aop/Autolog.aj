@@ -69,6 +69,14 @@ public aspect Autolog {
     
     class Logging{
     	//TODO
+    	
+    	public String getManualFormat() {
+    		return "";
+    	}
+    	
+    	public String getStructuredFormat() {
+    		return "";
+    	}
     }
     
 	class Argument {
