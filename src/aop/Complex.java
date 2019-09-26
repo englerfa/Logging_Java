@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.PriorityQueue;
 
 /*
  * This class is used to test logging of methods using AspectJ.
@@ -34,19 +35,25 @@ public class Complex {
 		
 		int[][] arr2d = new int[2][2];
 		getArray(arr2d); 
-
 		
-		// Hashmap
+		
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("England", "London");
 		getHashMap(map);
 		
+		
+		PriorityQueue<String> pQueue = new PriorityQueue<String>(); 
+		pQueue.add("Java"); 
+        pQueue.add("Python"); 
+        pQueue.add("Go"); 
+        getPriorityQueue(pQueue);
+        
+        
+        
+        
+		
 	}
 	
-	public HashMap<String, String> getHashMap(HashMap<String, String> map) {
-		System.out.println("getHashMap(HashMap<String, String> map) is being called");
-		return map;
-	}
 	
 	public List<Integer> getList(List<Integer> list) {
 		System.out.println("getList(List<Integer> list) is being called");
@@ -70,6 +77,16 @@ public class Complex {
 	public int[][] getArray(int[][] arr) {
 		System.out.println("getArray(int[][] arr) is being called");
 		return arr;
+	}
+	
+	public HashMap<String, String> getHashMap(HashMap<String, String> map) {
+		System.out.println("getHashMap(HashMap<String, String> map) is being called");
+		return map;
+	}
+	
+	public PriorityQueue<String> getPriorityQueue(PriorityQueue<String> pQueue) {
+		System.out.println("getPriorityQueue(PriorityQueue<String> pQueue) is being called");
+		return pQueue;
 	}
 	
 }
