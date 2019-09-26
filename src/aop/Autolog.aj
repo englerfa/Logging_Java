@@ -22,41 +22,21 @@ public aspect Autolog {
     
     // get information from method (name, arguments, return value, ...)
     after() returning (Object returnValue): methodExecuted() {
-    	List<Argument> args = new ArrayList<Argument>();
-
+    	
         String signature = thisJoinPoint.getSignature().toString();
+        
         CodeSignature codeSignature = (CodeSignature) thisJoinPoint.getSignature();
         
         // collect argument values and names
+        
         Object[] argumentValues = thisJoinPoint.getArgs();
         String[] argumentNames = codeSignature.getParameterNames();
         
+        Logging logger = new Logging();
+        logger.logManualFormat(signature, argumentNames, argumentValues, returnValue);
+        //logger.logStructuredFormat();
         
-        for (int i =0; i < argumentValues.length; i++){
-            Object argument = argumentValues[i];
-            String name = argumentNames[i];	
-            if (argument != null){
-            	Argument arg = new Argument(name, argument.toString(), argument.getClass().toString());
-            	args.add(arg);
-            }
-        }
-
-    	LocalDateTime now = LocalDateTime.now();
-    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        System.out.print("[LOGGING] ");
-        System.out.print(now.format(formatter) + " | ");
-        System.out.print("METHOD: " + signature);
-        System.out.print(", ARGUMENTS: ");
-        for(Argument a : args) {
-        	System.out.print(a.name + "=" + a.value + " ");		// TODO Add type, too?
-        }
-        System.out.print(", RETURNS: " + returnValue);
-        System.out.println();
-
     }
-    
-    
-
     
 	class Argument {
 		String name;
@@ -75,22 +55,40 @@ public aspect Autolog {
 	}
 	
     class Logging{
-    	//TODO
+    	
+    	List<Argument> args = new ArrayList<Argument>();
     	
     	/**
     	 * human readable like [LOGGING] 2019-09-20 14:12:27 | METHOD: double java.lang.Math.min(double, double), ARGUMENTS: a=5.0 b=6.0 , RETURNS: 5.0
     	 */
-    	public String getManualFormat() {
-    		String logline = "";
-    		return logline;
+    	public void logManualFormat(String signature, String[] argumentNames, Object[] argumentValues, Object returnValue) {
+            for (int i =0; i < argumentValues.length; i++){
+                Object argument = argumentValues[i];
+                String name = argumentNames[i];	
+                if (argument != null){
+                	Argument arg = new Argument(name, argument.toString(), argument.getClass().toString());
+                	args.add(arg);
+                }
+            }
+
+        	LocalDateTime now = LocalDateTime.now();
+        	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            System.out.print("[LOGGING] ");
+            System.out.print(now.format(formatter) + " | ");
+            System.out.print("METHOD: " + signature);
+            System.out.print(", ARGUMENTS: ");
+            for(Argument a : args) {
+            	System.out.print(a.name + "=" + a.value + " ");		// TODO Add type, too?
+            }
+            System.out.print(", RETURNS: " + returnValue);
+            System.out.println();
     	}
     	
     	/**
     	 * machine readable e.g., in JSON format
     	 */
-    	public String getStructuredFormat() {
-    		String logline = "";
-    		return logline;
+    	public void logStructuredFormat() {
+    		
     	}
     }
      
