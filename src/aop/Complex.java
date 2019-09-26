@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.PriorityQueue;
+import java.util.TreeSet;
 
 /*
  * This class is used to test logging of methods using AspectJ.
@@ -49,8 +50,11 @@ public class Complex {
         getPriorityQueue(pQueue);
         
         
-        
-        
+        TreeSet<String> ts = new TreeSet<String>();
+        ts.add("Java"); 
+        ts.add("Python"); 
+        ts.add("Go"); 
+        getTreeSet(ts);
 		
 	}
 	
@@ -87,6 +91,11 @@ public class Complex {
 	public PriorityQueue<String> getPriorityQueue(PriorityQueue<String> pQueue) {
 		System.out.println("getPriorityQueue(PriorityQueue<String> pQueue) is being called");
 		return pQueue;
+	}
+	
+	public TreeSet<String>  getTreeSet(TreeSet<String>  ts) {
+		System.out.println("getTreeSet(TreeSet<String>  ts) is being called");
+		return ts;
 	}
 	
 }
