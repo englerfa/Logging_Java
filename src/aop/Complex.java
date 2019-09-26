@@ -14,7 +14,7 @@ import java.util.TreeSet;
 public class Complex {
 	
 	public void run() {
-		
+
 		// List
 		List<Integer> list = new ArrayList<Integer>();
 		list.add(1);
@@ -55,6 +55,13 @@ public class Complex {
         ts.add("Python"); 
         ts.add("Go"); 
         getTreeSet(ts);
+        
+		
+		Tree tree = new Tree();
+		tree.add(1);
+		tree.add(2);
+		tree.add(3);
+		getTree(tree);
 		
 	}
 	
@@ -96,6 +103,11 @@ public class Complex {
 	public TreeSet<String>  getTreeSet(TreeSet<String>  ts) {
 		System.out.println("getTreeSet(TreeSet<String>  ts) is being called");
 		return ts;
+	}
+	
+	public Tree getTree(Tree tree) {
+		System.out.println("getTree(Tree tree) is being called");
+		return tree;
 	}
 	
 }
