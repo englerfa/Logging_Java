@@ -13,28 +13,24 @@ public aspect Autolog {
 	 * execution( return_type package_class_method arguments).
 	 */
     pointcut methodExecuted(): ( call(* *.*(..)) || execution(* *.*(..)) ) && !within(Autolog);
-    
-    // TODO record argument values before the method gets executed? Can they be changed otherwise? Possible approach with around.
-    
+    // call or execution?
+
     before(): methodExecuted(){
-    	
+        // TODO record argument values before the method gets executed? Can they be changed otherwise? Possible approach with around.
     }
     
     // get information from method (name, arguments, return value, ...)
     after() returning (Object returnValue): methodExecuted() {
     	
-        String signature = thisJoinPoint.getSignature().toString();
-        
         CodeSignature codeSignature = (CodeSignature) thisJoinPoint.getSignature();
         
-        // collect argument values and names
-        
-        Object[] argumentValues = thisJoinPoint.getArgs();
+        String signature = codeSignature.toString();
         String[] argumentNames = codeSignature.getParameterNames();
+        Object[] argumentValues = thisJoinPoint.getArgs();
         
         Logging logger = new Logging();
         logger.logManualFormat(signature, argumentNames, argumentValues, returnValue);
-        //logger.logStructuredFormat();
+        //logger.logStructuredFormat(signature, argumentNames, argumentValues, returnValue);
         
     }
     
@@ -87,7 +83,7 @@ public aspect Autolog {
     	/**
     	 * machine readable e.g., in JSON format
     	 */
-    	public void logStructuredFormat() {
+    	public void logStructuredFormat(String signature, String[] argumentNames, Object[] argumentValues, Object returnValue) {
     		
     	}
     }
