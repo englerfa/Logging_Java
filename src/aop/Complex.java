@@ -12,7 +12,7 @@ public class Complex {
 	
 	public void run() {
 		
-		// Lists
+		// List
 		List<Integer> list = new ArrayList<Integer>();
 		list.add(1);
 		list.add(2);
@@ -23,9 +23,7 @@ public class Complex {
 		getPerson(p);
 		
 		
-		
-		
-		// Arrays
+		// Array
 		int[] arr = {1,2,3};
 		getArray(arr);
 		//System.out.println("ARRAY TO String" + Arrays.toString(arr));
@@ -35,6 +33,8 @@ public class Complex {
 		
 		int[][] arr2d = new int[2][2];
 		getArray(arr2d); 
+		
+		// Hashmap
 		
 	}
 	
