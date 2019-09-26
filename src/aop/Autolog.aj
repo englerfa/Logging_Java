@@ -75,6 +75,7 @@ public aspect Autolog {
     		return logline;
     	}
     	
+    	
     	public String getStructuredFormat() {
     		String logline = "";
     		return logline;
