@@ -74,7 +74,7 @@ public aspect Autolog {
             System.out.print("METHOD: " + signature);
             System.out.print(", ARGUMENTS: ");
             for(Argument a : args) {
-            	System.out.print(a.name + "=" + a.value + " ");		// TODO Add type, too?
+            	System.out.print(a.name + "=" + a.value + " ");
             }
             System.out.print(", RETURNS: " + returnValue);
             System.out.println();
