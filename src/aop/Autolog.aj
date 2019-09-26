@@ -64,13 +64,7 @@ public aspect Autolog {
                 Object argument = argumentValues[i];
                 String name = argumentNames[i];	
                 
-                // Arrays are a special case, since the .toString() method returns an address.
-                if (argument.getClass().isArray()){
-                	Object typeArray = argument.getClass().getComponentType();
-                	System.out.println("     TYPE: " + typeArray.toString());
-                	Argument arg = new Argument(name, Arrays.toString((int[]) argument), argument.getClass().toString());
-                	args.add(arg);
-                } else if(argument != null) {
+                if(argument != null) {
                 	Argument arg = new Argument(name, argument.toString(), argument.getClass().toString());
                 	args.add(arg);
                 }
@@ -93,6 +87,7 @@ public aspect Autolog {
     	 * This method logs in a machine readable format i.e., in JSON format.
     	 */
     	public void logStructuredFormat(String signature, String[] argumentNames, Object[] argumentValues, Object returnValue) {
+    		
     		
     	}
     }
