@@ -53,13 +53,15 @@ public aspect Autolog {
 	
     class Logging{
     	
-    	List<Argument> args = new ArrayList<Argument>();
+    	
     	
     	/**
-    	 * This mehtod logs in a human readable format e.g., [LOGGING] 2019-09-20 14:12:27 | METHOD: double java.lang.Math.min(double, double), ARGUMENTS: a=5.0 b=6.0 , RETURNS: 5.0
+    	 * This method logs in a human readable format e.g., [LOGGING] 2019-09-20 14:12:27 | METHOD: double java.lang.Math.min(double, double), ARGUMENTS: a=5.0 b=6.0 , RETURNS: 5.0
     	 */
     	public void logManualFormat(String signature, String[] argumentNames, Object[] argumentValues, Object returnValue) {
             
+    		List<Argument> args = new ArrayList<Argument>();
+    		
     		for (int i =0; i < argumentValues.length; i++){
                 Object argument = argumentValues[i];
                 String name = argumentNames[i];	
