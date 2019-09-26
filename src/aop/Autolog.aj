@@ -74,6 +74,7 @@ public aspect Autolog {
     		return "";
     	}
     	
+    	
     	public String getStructuredFormat() {
     		return "";
     	}
