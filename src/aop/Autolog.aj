@@ -71,11 +71,13 @@ public aspect Autolog {
     	//TODO
     	
     	public String getManualFormat() {
-    		return "";
+    		String logline = "";
+    		return logline;
     	}
     	
     	public String getStructuredFormat() {
-    		return "";
+    		String logline = "";
+    		return logline;
     	}
     }
     
