@@ -9,13 +9,6 @@ import org.aspectj.lang.reflect.CodeSignature;
 public aspect Autolog {
 	
 	/**
-	 * configuration of output.
-	 * 0 human readable like [LOGGING] 2019-09-20 14:12:27 | METHOD: double java.lang.Math.min(double, double), ARGUMENTS: a=5.0 b=6.0 , RETURNS: 5.0
-	 * 1 machine readable e.g., in JSON format
-	 */
-	public static final int OUTPUT_FORMAT = 0;
-	
-	/**
 	 * create pointcut that captures all public and private methods.
 	 * execution( return_type package_class_method arguments).
 	 */
@@ -37,6 +30,8 @@ public aspect Autolog {
         // collect argument values and names
         Object[] argumentValues = thisJoinPoint.getArgs();
         String[] argumentNames = codeSignature.getParameterNames();
+        
+        
         for (int i =0; i < argumentValues.length; i++){
             Object argument = argumentValues[i];
             String name = argumentNames[i];	
@@ -45,42 +40,23 @@ public aspect Autolog {
             	args.add(arg);
             }
         }
-        
-        switch(OUTPUT_FORMAT) {
-        case 1:
-        	System.out.println("TODO");
-        	break;
-        default:
-        	LocalDateTime now = LocalDateTime.now();
-        	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-            System.out.print("[LOGGING] ");
-            System.out.print(now.format(formatter) + " | ");
-            System.out.print("METHOD: " + signature);
-            System.out.print(", ARGUMENTS: ");
-            for(Argument a : args) {
-            	System.out.print(a.name + "=" + a.value + " ");		// TODO Add type, too?
-            }
-            System.out.print(", RETURNS: " + returnValue);
-            System.out.println();
-        	break;
+
+    	LocalDateTime now = LocalDateTime.now();
+    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        System.out.print("[LOGGING] ");
+        System.out.print(now.format(formatter) + " | ");
+        System.out.print("METHOD: " + signature);
+        System.out.print(", ARGUMENTS: ");
+        for(Argument a : args) {
+        	System.out.print(a.name + "=" + a.value + " ");		// TODO Add type, too?
         }
+        System.out.print(", RETURNS: " + returnValue);
+        System.out.println();
+
     }
     
     
-    class Logging{
-    	//TODO
-    	
-    	public String getManualFormat() {
-    		String logline = "";
-    		return logline;
-    	}
-    	
-    	
-    	public String getStructuredFormat() {
-    		String logline = "";
-    		return logline;
-    	}
-    }
+
     
 	class Argument {
 		String name;
@@ -97,5 +73,25 @@ public aspect Autolog {
 			return "name=" + name + ", value=" + value + ", type=" + type;
 		}
 	}
+	
+    class Logging{
+    	//TODO
+    	
+    	/**
+    	 * human readable like [LOGGING] 2019-09-20 14:12:27 | METHOD: double java.lang.Math.min(double, double), ARGUMENTS: a=5.0 b=6.0 , RETURNS: 5.0
+    	 */
+    	public String getManualFormat() {
+    		String logline = "";
+    		return logline;
+    	}
+    	
+    	/**
+    	 * machine readable e.g., in JSON format
+    	 */
+    	public String getStructuredFormat() {
+    		String logline = "";
+    		return logline;
+    	}
+    }
      
 }
