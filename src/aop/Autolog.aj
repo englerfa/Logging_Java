@@ -12,7 +12,7 @@ public aspect Autolog {
 	 * create pointcut that captures all public and private methods.
 	 * execution( return_type package_class_method arguments).
 	 */
-    pointcut methodExecuted(): ( call(* *.*(..)) || execution(* *.*(..)) ) && !within(Autolog);
+    pointcut methodExecuted(): ( call(* *.*(..)) ) && !within(Autolog);
     // call or execution?
 
     before(): methodExecuted(){
