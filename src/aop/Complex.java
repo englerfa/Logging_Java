@@ -2,6 +2,7 @@ package aop;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 /*
@@ -33,9 +34,18 @@ public class Complex {
 		
 		int[][] arr2d = new int[2][2];
 		getArray(arr2d); 
+
 		
 		// Hashmap
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("England", "London");
+		getHashMap(map);
 		
+	}
+	
+	public HashMap<String, String> getHashMap(HashMap<String, String> map) {
+		System.out.println("getHashMap(HashMap<String, String> map) is being called");
+		return map;
 	}
 	
 	public List<Integer> getList(List<Integer> list) {
