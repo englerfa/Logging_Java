@@ -2,6 +2,7 @@ package aop;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import org.aspectj.lang.reflect.CodeSignature;
@@ -58,10 +59,18 @@ public aspect Autolog {
     	 * This mehtod logs in a human readable format e.g., [LOGGING] 2019-09-20 14:12:27 | METHOD: double java.lang.Math.min(double, double), ARGUMENTS: a=5.0 b=6.0 , RETURNS: 5.0
     	 */
     	public void logManualFormat(String signature, String[] argumentNames, Object[] argumentValues, Object returnValue) {
-            for (int i =0; i < argumentValues.length; i++){
+            
+    		for (int i =0; i < argumentValues.length; i++){
                 Object argument = argumentValues[i];
                 String name = argumentNames[i];	
-                if (argument != null){
+                
+                // Arrays are a special case, since the .toString() method returns an address.
+                if (argument.getClass().isArray()){
+                	Object typeArray = argument.getClass().getComponentType();
+                	System.out.println("     TYPE: " + typeArray.toString());
+                	Argument arg = new Argument(name, Arrays.toString((int[]) argument), argument.getClass().toString());
+                	args.add(arg);
+                } else if(argument != null) {
                 	Argument arg = new Argument(name, argument.toString(), argument.getClass().toString());
                 	args.add(arg);
                 }
