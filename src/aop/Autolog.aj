@@ -9,6 +9,8 @@ import org.aspectj.lang.reflect.CodeSignature;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import own.Argument;
+
 
 public aspect Autolog {
 	
@@ -56,7 +58,6 @@ public aspect Autolog {
 	
     class Logging{
     	
-    	
     	/**
     	 * This method logs in a human readable format e.g., 
     	 * Output = LOGGING] 2019-09-20 14:12:27 | METHOD: double java.lang.Math.min(double, double), ARGUMENTS: a=5.0 b=6.0 , RETURNS: 5.0
@@ -90,7 +91,7 @@ public aspect Autolog {
     	
     	/**
     	 * This method logs in a machine readable format i.e., in JSON format.
-    	 * Output = {"name":..., "arguments": [{"type":..., "name":..., "value":...}, {"type":..., "name":..., "value":...},...], "return_type":..., "return_value",...}
+    	 * JSON = {"name":..., "arguments": [{"type":..., "name":..., "value":...}, {"type":..., "name":..., "value":...},...], "return_type":..., "return_value",..., "time":...}
     	 */
     	public void logStructuredFormat(String signature, String[] argumentNames, Object[] argumentValues, Object returnValue) {
     		
@@ -118,6 +119,9 @@ public aspect Autolog {
     		json.put("arguments", arguments);
     		json.put("return_type", returnValue.getClass().getSimpleName());
             json.put("return_value", returnValue);
+        	LocalDateTime now = LocalDateTime.now();
+        	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            json.put("time", now.format(formatter));
             
             System.out.println(json);
     	}
