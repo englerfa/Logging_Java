@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import org.aspectj.lang.reflect.CodeSignature;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-
 import own.Argument;
 
-import org.aspectj.lang.reflect.CodeSignature;
+
 
 
 public aspect Autolog {
@@ -107,7 +107,7 @@ public aspect Autolog {
                 
                 if(value != null) {
                 	JSONObject arg = new JSONObject();
-                	arg.put("type", type);
+                	arg.put("type", argumentValues[i].getClass().getSimpleName());
                 	arg.put("name", name);
                 	arg.put("value", value);
                 	arguments.add(arg);
@@ -117,13 +117,11 @@ public aspect Autolog {
     		
     		json.put("name", signature);
     		json.put("arguments", arguments);
+    		json.put("return_type", returnValue.getClass().getSimpleName());
             json.put("return_value", returnValue);
             
             System.out.println(json);
-            
     	}
-    	
-    	
     }
      
 }
