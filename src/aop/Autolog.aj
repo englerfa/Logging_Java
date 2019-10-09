@@ -10,7 +10,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 
-
 public aspect Autolog {
 	
 	/**
@@ -59,7 +58,8 @@ public aspect Autolog {
     	
     	
     	/**
-    	 * This method logs in a human readable format e.g., [LOGGING] 2019-09-20 14:12:27 | METHOD: double java.lang.Math.min(double, double), ARGUMENTS: a=5.0 b=6.0 , RETURNS: 5.0
+    	 * This method logs in a human readable format e.g., 
+    	 * Output = LOGGING] 2019-09-20 14:12:27 | METHOD: double java.lang.Math.min(double, double), ARGUMENTS: a=5.0 b=6.0 , RETURNS: 5.0
     	 */
     	public void logManualFormat(String signature, String[] argumentNames, Object[] argumentValues, Object returnValue) {
             
@@ -90,6 +90,7 @@ public aspect Autolog {
     	
     	/**
     	 * This method logs in a machine readable format i.e., in JSON format.
+    	 * Output = {"name":..., "arguments": [{"type":..., "name":..., "value":...}, {"type":..., "name":..., "value":...},...], "return_type":..., "return_value",...}
     	 */
     	public void logStructuredFormat(String signature, String[] argumentNames, Object[] argumentValues, Object returnValue) {
     		
