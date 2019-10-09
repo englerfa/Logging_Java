@@ -35,8 +35,8 @@ public aspect Autolog {
         Object[] argumentValues = thisJoinPoint.getArgs();
         
         Logging logger = new Logging();
-        logger.logManualFormat(signature, argumentNames, argumentValues, returnValue);
-        //logger.logStructuredFormat(signature, argumentNames, argumentValues, returnValue);
+        //logger.logManualFormat(signature, argumentNames, argumentValues, returnValue);
+        logger.logStructuredFormat(signature, argumentNames, argumentValues, returnValue);
         
     }
     
