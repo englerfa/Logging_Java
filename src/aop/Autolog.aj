@@ -5,10 +5,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+import own.Argument;
+
 import org.aspectj.lang.reflect.CodeSignature;
-
-import org.json.simple.*;
-
 
 
 public aspect Autolog {
@@ -93,23 +95,35 @@ public aspect Autolog {
     	 */
     	public void logStructuredFormat(String signature, String[] argumentNames, Object[] argumentValues, Object returnValue) {
     		
+    		JSONObject json = new JSONObject();
+    		JSONArray arguments = new JSONArray();
+    		
     		List<Argument> args = new ArrayList<Argument>();
     		
     		for (int i =0; i < argumentValues.length; i++){
-                Object argument = argumentValues[i];
-                String name = argumentNames[i];	
+    			String type = "int";
+    			String name = argumentNames[i];	
+                Object value = argumentValues[i];
                 
-                if(argument != null) {
-                	Argument arg = new Argument(name, argument.toString(), argument.getClass().toString());
-                	args.add(arg);
+                if(value != null) {
+                	JSONObject arg = new JSONObject();
+                	arg.put("type", type);
+                	arg.put("name", name);
+                	arg.put("value", value);
+                	arguments.add(arg);
+                	
                 }
             }
-
     		
-    		
-    		
-    		
+    		json.put("name", signature);
+    		json.put("arguments", arguments);
+            json.put("return_value", returnValue);
+            
+            System.out.println(json);
+            
     	}
+    	
+    	
     }
      
 }
