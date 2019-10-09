@@ -71,6 +71,17 @@
                   </execution>
               </executions>
           </plugin>
+          
+                <!-- NEW s.t. we can use mvn exec:java-->
+	      <plugin>
+			<artifactId>exec-maven-plugin</artifactId>
+			<groupId>org.codehaus.mojo</groupId>
+			<version>1.3.2</version>
+			<configuration>
+				<mainClass>aop.Main</mainClass>
+				<killAfter>-1</killAfter>
+			</configuration>
+	       </plugin>
       
     </plugins>
   </build>
