@@ -10,5 +10,6 @@ To build project with maven
 ```mvn -DskipTests package```
 
 Run project  
+
 ```mvn exec:java```
 
