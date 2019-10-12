@@ -1,10 +1,10 @@
 # Logging_Java
-Automated logging of all function calls using AspectJ to implement crosscutting concern of logging.
-We log name, argument name, argument value, return value and return type.
-We provide various cases to test the logging aspect. The goal is to log every function call.
+This repository provides a method to automatically log all method calls. 
+A log statement contains a timestamp, method name, argument names, types, and values, and return type and value.
+We implement automated logging using AspectJ, which is an aspect-oriented programming solution for Java.
 To weave aspects into code, we use the AspectJ compiler ajc and define the dependencies over maven.
 
-Build project  
+To build project with maven:
 ```mvn -DskipTests package```
 
 Run project  
