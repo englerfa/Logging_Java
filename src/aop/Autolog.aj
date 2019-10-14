@@ -18,10 +18,6 @@ public aspect Autolog {
 	 */
     pointcut methodExecuted(): ( call(* *.*(..)) ) && !within(Autolog);
     // call or execution?
-
-    before(): methodExecuted(){
-        // TODO record argument values before the method gets executed? Can they be changed otherwise? Possible approach with around.
-    }
     
     // get information from method (name, arguments, return value, ...)
     after() returning (Object returnValue): methodExecuted() {
@@ -36,6 +32,11 @@ public aspect Autolog {
         //logger.logManualFormat(signature, argumentNames, argumentValues, returnValue);
         logger.logStructuredFormat(signature, argumentNames, argumentValues, returnValue);
         
+    }
+    
+    
+    before(): methodExecuted(){
+        // Not used yet.
     }
     
 	class Argument {
