@@ -39,22 +39,7 @@ public aspect Autolog {
         // Not used yet.
     }
     
-	class Argument {
-		String name;
-		String value;
-		String type;
-		
-		public Argument(String name, String value, String type){
-			this.name = name;
-			this.value = value;
-			this.type = type;
-		}
-		
-		public String toString() {
-			return "name=" + name + ", value=" + value + ", type=" + type;
-		}
-	}
-	
+    
     class Logging{
     	
     	/**
@@ -125,5 +110,21 @@ public aspect Autolog {
             System.out.println(json);
     	}
     }
+    
+    	class Argument {
+		String name;
+		String value;
+		String type;
+		
+		public Argument(String name, String value, String type){
+			this.name = name;
+			this.value = value;
+			this.type = type;
+		}
+		
+		public String toString() {
+			return "name=" + name + ", value=" + value + ", type=" + type;
+		}
+	}
      
 }
