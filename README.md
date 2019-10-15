@@ -14,3 +14,4 @@ Run project
 ```mvn exec:java```
 
 ## Limitations
+- We cannot limit the depth of function calls.
